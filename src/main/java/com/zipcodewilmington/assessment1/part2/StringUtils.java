@@ -1,6 +1,7 @@
 package com.zipcodewilmington.assessment1.part2;
 
 import com.zipcodewilmington.assessment1.part1.BasicStringUtils;
+import org.omg.CosNaming.NamingContextExtPackage.StringNameHelper;
 
 /**
  * Created by leon on 2/16/18.
@@ -13,7 +14,8 @@ public class StringUtils {
      * given a string containing words delimited by spaces, representative of a sentence, return an array of strings, each element representative of a respective word in the sentence
      */
     public static String[] getWords(String sentence) {
-        return sentence.split(" ");
+        return sentence.split(" ",sentence.length());
+
     }
 
 
@@ -33,8 +35,8 @@ public class StringUtils {
      * given a string containing words delimited by spaces, representative of a sentence, return the first word with identical contents in reverse order
      */
     public static String reverseFirstWord(String sentence) {
-        String firstWord = getFirstWord(sentence);
-        return BasicStringUtils.reverse(firstWord);
+        String[] words = sentence.split(" ");
+        return BasicStringUtils.reverse(words[0]);
     }
 
     /**
@@ -43,11 +45,10 @@ public class StringUtils {
      * given a string containing words delimited by spaces, representative of a sentence, return the first word with identical contents in reverse order with the first character capitalized
      */
     public static String reverseFirstWordThenCamelCase(String sentence) {
-        String firtWord = getFirstWord(sentence);
-        String revered = BasicStringUtils.reverse(firtWord);
+        String[] words = sentence.split(" ");
+        String str = BasicStringUtils.reverse(words[0]);
 
-        char upperCase = Character.toUpperCase(revered.charAt(0));
-        return upperCase + revered.substring(1);
+        return BasicStringUtils.camelCase(str);
     }
 
 
@@ -58,7 +59,7 @@ public class StringUtils {
      * given a string and index, return an identical string excluding the character at the specified index
      */
     public static String removeCharacterAtIndex(String str, int index) {
-        return str.substring(0, index) + str.substring(index + 1);
+        return str.substring(0,index) + str.substring(index+1);
     }
 
 }

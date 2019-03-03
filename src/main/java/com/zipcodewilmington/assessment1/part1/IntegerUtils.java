@@ -13,13 +13,12 @@ public class IntegerUtils {
      * @return the sum of all integers between 0 and not including `n`
      */
     public static Integer getSumOfN(Integer n) {
-        int total = 0;
 
-        for(int i = 0; i <= n; i++) {
-            total += i;
+        Integer sum = 0;
+        for (int i = 0; i <= n; i++) {
+            sum += i;
         }
-
-        return total;
+        return sum;
     }
 
     /**
@@ -27,13 +26,11 @@ public class IntegerUtils {
      * @return the product of all integers between 0 and not including `n`
      */
     public static Integer getProductOfN(Integer n) {
-        int total = 1;
-
-        for(int i = 1; i <= n; i++) {
-            total *= i;
+        Integer prod = 1;
+        for (int i = 1; i <= n; i++) {
+            prod *= i;
         }
-
-        return total;
+        return prod;
     }
 
     /**
@@ -42,7 +39,14 @@ public class IntegerUtils {
      */
     public static Integer reverseDigits(Integer val) {
         String valStr = val.toString();
-        String reversed = BasicStringUtils.reverse(valStr);
-        return Integer.parseInt(reversed);
+        String reverse = BasicStringUtils.reverse(valStr);
+        return Integer.parseInt(reverse);
+//        String str = val.toString();
+//        String temp = "";
+//        for (int i = str.length() - 1; i > 0; i--) {
+//            str += i;
+//        }
+//        return Integer.parseInt(str);
+//    }
     }
 }

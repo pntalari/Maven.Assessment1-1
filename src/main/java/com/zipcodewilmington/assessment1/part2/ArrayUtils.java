@@ -1,6 +1,10 @@
 package com.zipcodewilmington.assessment1.part2;
 
+import sun.jvm.hotspot.oops.Array;
+
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by leon on 2/16/18.
@@ -13,15 +17,11 @@ public class ArrayUtils {
      * Given an array of objects, named `objectArray`, and an object `objectToCount`, return the number of times the `objectToCount` appears in the `objectArray`
      */
     public static Integer getNumberOfOccurrences(Object[] objectArray, Object objectToCount) {
-        int count = 0;
-
-        for (int i = 0; i < objectArray.length; i++) {
-            if(objectArray[i].equals(objectToCount)) {
+        Integer count = 0;
+        for (Object s : objectArray) {
+            if (s.equals(objectToCount))
                 count++;
-            }
         }
-
-
         return count;
     }
 
@@ -39,14 +39,30 @@ public class ArrayUtils {
         int n = 0;
 
         for (int i = 0; i < objectArray.length; i++) {
-            if(!objectArray[i].equals(objectToRemove)) {
+            if (!objectArray[i].equals(objectToRemove)) {
                 removedArray[n] = objectArray[i];
                 n++;
             }
         }
 
         return removedArray;
+
+//        Integer count = getNumberOfOccurrences(objectArray, objectToRemove);
+//        Object retArr[] = new Object[objectArray.length - count];
+//
+//        Integer i = 0;
+//        for (Object o : objectArray
+//        ) {
+//            if (!o.equals(objectToRemove)) {
+//                retArr[i] = o;
+//                i++;
+//            }
+//        }
+//
+//        return retArr;
+
     }
+
 
     /**
      * @param objectArray an array of any type of Object
@@ -55,18 +71,16 @@ public class ArrayUtils {
      */
     public static Object getMostCommon(Object[] objectArray) {
         Object mostCommon = objectArray[0];
-        int mostCount = getNumberOfOccurrences(objectArray, mostCommon);
-
+        Integer mostCount = getNumberOfOccurrences(objectArray, mostCommon);
         for (int i = 1; i < objectArray.length; i++) {
             Object current = objectArray[i];
-            int currentCount = getNumberOfOccurrences(objectArray, current);
+            Integer currentCount = getNumberOfOccurrences(objectArray, current);
 
             if (currentCount > mostCount) {
                 mostCommon = current;
                 mostCount = currentCount;
             }
         }
-
         return mostCommon;
     }
 
@@ -78,18 +92,16 @@ public class ArrayUtils {
      */
     public static Object getLeastCommon(Object[] objectArray) {
         Object leastCommon = objectArray[0];
-        int leastCount = getNumberOfOccurrences(objectArray, leastCommon);
-
+        Integer leastCount = getNumberOfOccurrences(objectArray, leastCommon);
         for (int i = 1; i < objectArray.length; i++) {
             Object current = objectArray[i];
-            int currentCount = getNumberOfOccurrences(objectArray, current);
+            Integer currentCount = getNumberOfOccurrences(objectArray, current);
 
             if (currentCount < leastCount) {
                 leastCommon = current;
                 leastCount = currentCount;
             }
         }
-
         return leastCommon;
     }
 
@@ -100,15 +112,14 @@ public class ArrayUtils {
      * given two arrays `objectArray` and `objectArrayToAdd`, return an array containing all elements in `objectArray` and `objectArrayToAdd`
      */
     public static Object[] mergeArrays(Object[] objectArray, Object[] objectArrayToAdd) {
-        int newLength = objectArray.length + objectArrayToAdd.length;
-        Object[] merged = Arrays.copyOf(objectArray, newLength);
-        int mergedIndex = objectArray.length;
-
+        Integer len = objectArray.length + objectArrayToAdd.length;
+        Object[] newArr = Arrays.copyOf(objectArray, len);
+        Integer j = objectArrayToAdd.length;
         for (int i = 0; i < objectArrayToAdd.length; i++) {
-            merged[mergedIndex] = objectArrayToAdd[i];
-            mergedIndex++;
+            newArr[j] = objectArrayToAdd[i];
+            j++;
         }
 
-        return merged;
+        return newArr;
     }
 }
